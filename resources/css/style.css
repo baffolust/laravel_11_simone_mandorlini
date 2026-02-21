@@ -1,0 +1,64 @@
+:root {
+
+    /* Background colors */
+    --bgColor_1: #F4F0BB;
+    --bgColor_2: #D6CE93;
+    --bgColor_3: #7EA8BE;
+    --bgColor_4: #2C302E;
+
+    /* Text colors */
+    --textColor_1: #2C302E;
+    --textColor_2: #D6CE93;
+    --textColor_3: #7EA8BE;
+    --textColor_4: #4E5283;
+}
+
+.bg-color-1 {
+    background-color: var(--bgColor_1);
+}
+
+.bg-color-2 {
+    background-color: var(--bgColor_2);
+}
+
+.bg-color-3 {
+    background-color: var(--bgColor_3);
+}
+
+.bg-color-4 {
+    background-color: var(--bgColor_4);
+}
+
+.text-color-1 {
+    color: var(--textColor_1);
+}
+
+.text-color-2 {
+    color: var(--textColor_2);
+}
+
+.text-color-3 {
+    color: var(--textColor_3);
+}
+
+.text-color-4 {
+    color: var(--textColor_4);
+}
+
+/* BODY */
+
+body{
+
+    background-color: var(--bgColor_1);
+}
+
+
+/* NAVBAR */
+
+.navbar {
+    --bs-navbar-color: var(--textColor_1);
+    --bs-navbar-hover-color: var(--textColor_4);
+    --bs-navbar-active-color: var(--textColor_2);
+    --bs-navbar-brand-color: var(--textColor_1);
+    --bs-navbar-brand-hover-color: var(--textColor_4);
+}
