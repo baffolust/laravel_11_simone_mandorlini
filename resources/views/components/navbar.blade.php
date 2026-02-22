@@ -23,10 +23,21 @@
                 @auth
 
                     <li class="nav-item">
-                        <form action="{{route('logout')}}" method="POST">
+                        <form action="{{ route('logout') }}" method="POST">
                             @csrf
                             <button class="nav-link">Logout</button>
                         </form>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Sezione Ricette
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{{route('receipt.index')}}">Tutte le Ricette</a></li>
+                            <li><a class="dropdown-item" href="{{route('receipt.create')}}">Inserisci Ricetta</a></li>
+                        </ul>
                     </li>
 
                     <li class="nav-item">
