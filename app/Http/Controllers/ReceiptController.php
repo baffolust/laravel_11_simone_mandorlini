@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ReceiptRequest;
 use App\Models\Receipt;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+
 
 class ReceiptController extends Controller
 {
@@ -12,7 +15,8 @@ class ReceiptController extends Controller
      */
     public function index()
     {
-        return view('receipt.index');
+        $receipts = Receipt::all();
+        return view('receipt.index', compact('receipts'));
     }
 
     /**
@@ -26,9 +30,19 @@ class ReceiptController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ReceiptRequest $request)
     {
-        //
+        $receipt = $request->only('title', 'type', 'short_description', 'description');
+
+        if($request->hasFile('img')){
+            $receipt['img']=$request->file('img')->store('media/img', 'public');
+        }
+
+        $receipt['author']=Auth::user()->name;
+
+        Receipt::create($receipt);
+
+        return back()->with('receipt_success', 'Ricetta inserita correttamente');
     }
 
     /**
@@ -36,7 +50,7 @@ class ReceiptController extends Controller
      */
     public function show(Receipt $receipt)
     {
-        //
+        return view('receipt.show', compact('receipt'));
     }
 
     /**

@@ -4,7 +4,7 @@
 
     /* Background colors */
     --bgColor_1: #F4F0BB;
-    --bgColor_2: #D6CE93;
+    --bgColor_2: #d6cf94;
     --bgColor_3: #7EA8BE;
     --bgColor_4: #2C302E;
 
@@ -54,6 +54,7 @@ body {
     background-color: var(--bgColor_1);
 }
 
+/* ## COMPONENTS ## */
 
 /* NAVBAR */
 
@@ -68,7 +69,13 @@ body {
 .nav-link-user {
     color: var(--textColor_1);
     cursor: default;
-    pointer-events: none; /* opzionale */
+    pointer-events: none;
+    /* opzionale */
+}
+
+.navbar .dropdown-item:hover {
+    background-color: var(--bgColor_3);
+    color: var(--textColor_2);
 }
 
 /* HEADER */
@@ -80,4 +87,41 @@ body {
     font-style: normal;
 
     height: 12vh;
+}
+
+
+/* RECEIPT CARD */
+
+.receipt-card-custom .card-body,
+.receipt-card-custom .list-group,
+.receipt-card-custom .list-group-item {
+    background-color: var(--bgColor_2);
+}
+
+.receipt-card-img-custom {
+    width: 100%;
+    aspect-ratio: 5 / 3;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* 
+##########################################################################################
+##########################################################################################
+ */
+
+/* RECEIPT */
+
+
+/* Show */
+
+.receipt-img-show {
+
+    max-width: 300px;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    object-position: center;
+    border: 5px, solid, var(--bgColor_3); 
+    border-radius: 300px;
+
 }

@@ -11,13 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('receipts', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->string('type');
-            $table->text('description');
-            $table->string('img')->default('public/media/img');
-            $table->timestamps();
+        Schema::table('receipts', function (Blueprint $table) {
+            
+            $table->string('author')->nullable()->after('img');
         });
     }
 
@@ -26,6 +22,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('receipts');
+        Schema::table('receipts', function (Blueprint $table) {
+            
+            $table->dropColumn('author');
+        });
     }
 };
