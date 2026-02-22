@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ReceiptRequest;
 use App\Models\Receipt;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
 
 
 class ReceiptController extends Controller
@@ -32,17 +33,17 @@ class ReceiptController extends Controller
      */
     public function store(ReceiptRequest $request)
     {
-        $receipt = $request->only('title', 'type', 'short_description', 'description');
+        $newReceipt = $request->only('title', 'type', 'short_description', 'description');
 
-        if($request->hasFile('img')){
-            $receipt['img']=$request->file('img')->store('media/img', 'public');
+        if ($request->hasFile('img')) {
+            $newReceipt['img'] = $request->file('img')->store('media/img', 'public');
         }
 
-        $receipt['author']=Auth::user()->name;
+        $newReceipt['author'] = Auth::user()->name;
 
-        Receipt::create($receipt);
+        Receipt::create($newReceipt);
 
-        return back()->with('receipt_success', 'Ricetta inserita correttamente');
+        return back()->with('message', 'Ricetta inserita correttamente');
     }
 
     /**
@@ -58,15 +59,24 @@ class ReceiptController extends Controller
      */
     public function edit(Receipt $receipt)
     {
-        //
+        return view('receipt.edit', compact('receipt'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Receipt $receipt)
+    public function update(ReceiptRequest $request, Receipt $receipt)
     {
-        //
+        $updateReceipt = $request->only('type', 'short_description', 'description');
+
+        if ($request->hasFile('img')) {
+            $updateReceipt['img'] = $request->file('img')->store('media/img', 'public');
+        }
+
+        $receipt->update($updateReceipt);
+
+        $receipts = Receipt::all();
+        return redirect()->route('receipt.index', compact('receipts'))->with('message', "Ricetta aggiornata");
     }
 
     /**
@@ -74,6 +84,13 @@ class ReceiptController extends Controller
      */
     public function destroy(Receipt $receipt)
     {
-        //
+        if ($receipt->img) {
+            Storage::disk('public')->delete($receipt->img); 
+            //Il metodo disk() accetta il nome del del disk - vedi config/filesystems.php
+        }
+
+        $receipt->delete();
+        $receipts = Receipt::all();
+        return redirect()->route('receipt.index', compact('receipts'))->with('message', "Ricetta Eliminata");
     }
 }

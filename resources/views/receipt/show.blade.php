@@ -9,7 +9,10 @@
             </div>
             <div class="col-12 col-md-8">
                 <h4>Descrizione della ricetta</h4>
-                <p>{{$receipt->description}}</p>
+                <p>{{ $receipt->description }}</p>
+                @if (Auth::user()->name == $receipt->author)
+                    <a href="{{ route('receipt.edit', compact('receipt')) }}" class="card-link">Edit</a>
+                @endif
             </div>
         </div>
     </div>

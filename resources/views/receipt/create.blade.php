@@ -4,7 +4,7 @@
 
     <x-display-errors />
 
-    <x-display-message message='receipt_success' />
+    <x-display-message message='message' />
 
     <div class="container">
         <div class="row justify-content-center align-items-center mt-5">

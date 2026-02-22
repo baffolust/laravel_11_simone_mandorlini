@@ -2,6 +2,8 @@
 
     <x-header title="Tutte Le Ricette"/>
 
+    <x-display-message message="message"/>
+
     <div class="container">
         <div class="row justify-content-evenly align-items-top my-4">
             @foreach ($receipts as $receipt)

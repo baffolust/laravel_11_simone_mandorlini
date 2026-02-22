@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ReceiptRequest extends FormRequest
@@ -22,7 +23,7 @@ class ReceiptRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|min:5|unique:App\Models\Receipt,title',
+            'title' => ['required', 'min:5', Rule::unique('App\Models\Receipt','title')->ignore($this->receipt)],
             'type' => 'required|min:5',
             'short_description' => 'required|min:10|max:300',
             'description' => 'required|min:50'
