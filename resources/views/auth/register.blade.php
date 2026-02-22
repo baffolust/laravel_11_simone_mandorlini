@@ -1,12 +1,6 @@
 <x-layout>
 
-    <header class="container-fluid bg-color-2 text-color-1 header-custom">
-        <div class="row justify-content-center align-items-center text-center h-100">
-            <div class="col-12">
-                <h1 class="pt-2 mt-1 mb-0">Registrati</h1>
-            </div>
-        </div>
-    </header>
+    <x-header title="Registrati"/>
 
     <x-display-errors/>
 
@@ -17,19 +11,19 @@
                     @csrf
                     <div class="mb-3">
                         <label for="name" class="form-label">Nome Completo</label>
-                        <input type="name" class="form-control" id="name">
+                        <input type="name" name="name" class="form-control" id="name">
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Email address</label>
-                        <input type="email" class="form-control" id="email">
+                        <input type="email" name="email" class="form-control" id="email">
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password">
+                        <input type="password" name="password" class="form-control" id="password">
                     </div>
                     <div class="mb-3">
                         <label for="password_confirmation" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password_confirmation">
+                        <input type="password" name="password_confirmation" class="form-control" id="password_confirmation">
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>

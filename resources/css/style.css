@@ -65,6 +65,12 @@ body {
     --bs-navbar-brand-hover-color: var(--textColor_4);
 }
 
+.nav-link-user {
+    color: var(--textColor_1);
+    cursor: default;
+    pointer-events: none; /* opzionale */
+}
+
 /* HEADER */
 
 .header-custom {
